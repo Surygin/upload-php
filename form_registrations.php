@@ -1,6 +1,6 @@
 <?php
 
-include_once('query.php');
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -32,29 +32,34 @@ include_once('query.php');
       padding: 20px;
       border-radius: 5px;
       background-color: #ccc;
+      text-align: center;
     }
     .form button, input{
+      margin: 5px;
       cursor: pointer;
+    }
+    .form input{
+      width: 300px;
+      padding: 5px;
     }
   </style>
     <section>
       <div class="all">
         <div class="form">
-          <form action="upload.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="img">
-            <button>Отправить</button>
+          <form action="registrations.php" method="POST">
+          <h2>Регистрация</h2>
+          <p style="color: tomato;"><?php 
+              if (!empty($_SESSION['msg'])){
+                echo $_SESSION['msg'];
+              }
+              unset($_SESSION['msg']);
+            ?></p>
+            <input type="email" name="login" placeholder="email">
+            <input type="password" name="psw" placeholder="Password">
+            <button>Регистрация</button>
+            У меня есть аккаунт. <a href="form_login.php">Войти</a>
           </form>
         </div>
-        <div class="img">
-          <?php 
-          $img = get_img_all();
-          #var_dump($img);
-
-          foreach ($img as $i) { ?>
-            <img src="upload/<?php echo $i['name'] ?>">
-          <?php };
-          ?>
-        </div> 
       </div> 
     </section>
 </body>
