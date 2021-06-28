@@ -13,12 +13,17 @@ include_once('query.php');
 </head>
 <body>
   <style>
+    .all{
+      width: 360px;
+      margin: 0 auto;
+    }
     .img {
+      width: 350px;
       margin: 20px;
     }
     img {
       width: 100px;
-      margin: 10px;
+      margin: 5px;
       float: left;
     }
     .form {
@@ -33,22 +38,24 @@ include_once('query.php');
     }
   </style>
     <section>
-      <div class="form">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
-          <input type="file" name="img">
-          <button>Отправить</button>
-        </form>
-      </div>
-      <div class="img">
-        <?php 
-        $img = get_img_all();
-        #var_dump($img);
+      <div class="all">
+        <div class="form">
+          <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="img">
+            <button>Отправить</button>
+          </form>
+        </div>
+        <div class="img">
+          <?php 
+          $img = get_img_all();
+          #var_dump($img);
 
-        foreach ($img as $i) { ?>
-          <img src="upload/<?php echo $i['name'] ?>">
-        <?php };
-        ?>
-      </div>  
+          foreach ($img as $i) { ?>
+            <img src="upload/<?php echo $i['name'] ?>">
+          <?php };
+          ?>
+        </div> 
+      </div> 
     </section>
 </body>
 </html>
